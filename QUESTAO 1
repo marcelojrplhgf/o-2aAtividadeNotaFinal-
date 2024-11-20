@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria</title>
+</head>
+<body>
+    <h1>Livraria - Gerenciamento de Livros</h1>
+    <!-- Formulário para adicionar um livro -->
+    <h2>Adicionar Novo Livro</h2>
+    <form action="add_book.php" method="POST">
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+        <label for="autor">Autor:</label><br>
+        <input type="text" id="autor" name="autor" required><br><br>
+        <label for="ano">Ano de Publicação:</label><br>
+        <input type="number" id="ano" name="ano" required><br><br>
+        <input type="submit" value="Adicionar Livro">
+    </form>
+    <hr>
+    <h2>Livros Cadastrados</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Ano</th>
+            <th>Ações</th>
+        </tr>
+        <?php foreach ($livros as $livro): ?>
+        <tr>
+            <td><?php echo $livro['id']; ?></td>
+            <td><?php echo $livro['titulo']; ?></td>
+            <td><?php echo $livro['autor']; ?></td>
+            <td><?php echo $livro['ano']; ?></td>
+            <td>
+                <!-- Formulário para excluir livro -->
+                <form action="delete_book.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo $livro['id']; ?>">
+                    <input type="submit" value="Excluir">
+                </form>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+
